@@ -1,19 +1,8 @@
 import React, { useState } from 'react'
-// let num = null;
 const random = ({ anecdotes }) => {
   let num = (Math.floor(Math.random() * anecdotes.length));
-  console.log(num);
   return  num
-  // console.log(num);
-  
-  
 }
-// const Button = ({ text, anecdotes, setSelected  }) => {
- 
-//   return <button >{text}</button>
-// }
-// const points = { quote1: 0, quote2: 0, quote3: 0, quote4: 0, quote5: 0, quote6: 0 }
-
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often',
@@ -33,30 +22,31 @@ const App = () => {
     newVotes[selected] += 1;
     setQuotes(newVotes)
   }
+  const highestVoted = () => {
+    let highNum = 0;
+    let highQuote = 0;
+    for (const quote in quotes) {
+      let property = quotes[quote];
+      if (property > highNum) {
+        highNum = property
+        highQuote = quote
+      }
+    }
+   return highQuote
+  }
 
   return (
     <div>
+      <h2>Anecdote of the day</h2>
       <h3>{anecdotes[selected]}</h3>
-      <h4>has {quotes[selected]} votes</h4>
-
+      <p>Total {quotes[selected]} votes</p>
       <div>
-       
-        <button onClick={() => {
-          
-         setSelected(random({anecdotes}))
-         
-        }}>Next Anecdote</button>
-        <button onClick={() => {
-          
-         increaseVote(selected)
-         
-        }}>Vote</button>
-        <p>Quote 1 votes: {quotes[0] }</p>
-        <p>Quote 2 votes: {quotes[1] }</p>
-        <p>Quote 3 votes: {quotes[2] }</p>
-        <p>Quote 4 votes: {quotes[3] }</p>
-        <p>Quote 5 votes: {quotes[4] }</p>
-        <p>Quote 6 votes: {quotes[5] }</p>
+        <button onClick={() => {setSelected(random({anecdotes}))}}>Next Anecdote</button>
+        <button onClick={() => {increaseVote(selected)}}>Vote</button>
+        <h3>Anecdote with the most votes</h3>
+        <p>
+          {anecdotes[highestVoted()]}</p>
+        <p>Total: {quotes[highestVoted()]} votes</p>
     
       </div>
     </div>
