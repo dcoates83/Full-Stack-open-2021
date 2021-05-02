@@ -3,7 +3,14 @@ import React, { useState } from 'react'
 const Button = (props)=>{
   return <button onClick={props.handleClick}>{props.text}</button>
 }
-const Statistics = ({clicks}) => {
+const Statistics = ({ clicks }) => {
+  if (clicks.total === 0) {
+    return (
+      <div>
+        <p>No feedback has been given</p>
+      </div>
+    )
+  }
   return(
   <div>
       <h2>Statistics</h2>
@@ -54,7 +61,7 @@ const App = () => {
       <Button handleClick={handleGood} text="Good" />
       <Button handleClick={handleNeutral} text="Neutral" />
       <Button handleClick={handleBad} text="Bad" />
-    <Statistics clicks={clicks}/>
+      <Statistics clicks={clicks}/>
       
 
     </div>
