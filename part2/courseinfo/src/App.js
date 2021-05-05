@@ -12,11 +12,7 @@ const Header = (props) => {
 const Content = (props) => {
   // console.log(props.parts);
   let data = props.parts;
-  // let part = data.reduce((array, i) => {
-  //   console.log(array, i)
-  //   return (i.id)
-    
-  // },0)
+ 
   return (
     <div>
       
@@ -51,12 +47,19 @@ const Course = ({course}) => {
 }
 
 const Total = (props) => {
+  
   const data = props.parts
+
+  let total = data.reduce((sum, i) => {
+    
+   return sum + i.exercises
+  
+},0)
 
   return (
     <div>
-   
-      <p>Number of exercises {data[0].exercises + data[1].exercises + data[2].exercises}</p>
+  
+      <p>Number of exercises {total}</p>
   
     </div>
    
