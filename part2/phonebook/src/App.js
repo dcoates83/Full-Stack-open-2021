@@ -2,20 +2,29 @@ import React, { useState } from 'react'
 
 const App = () => {
   const [ persons, setPersons ] = useState([
-    { name: 'Arto Hellas' }
+    { name: 'Arto Hellas',id:0 }
   ]) 
-  const [ newName, setNewName ] = useState('')
+  const [newName, setNewName] = useState('')
+  const [showAll, setShowAll] = useState(true)
   const addNote = (event) => {
     event.preventDefault()
-    const noteObject = {
-      name: newName,
-      // date: new Date().toISOString(),
-      // important: Math.random() < 0.5,
-      // id: persons.length + 1,
+
+    let check =  persons.find(person => person.name === newName ) 
+    if (!check) {
+      const noteObject = {
+        name: newName,
+        // date: new Date().toISOString(),
+        // important: Math.random() < 0.5,
+        id: persons.length + 1,
+      }
+
+      setPersons(persons.concat(noteObject))
+      setNewName('')
+    } else {
+      alert(`${newName} has already been added`)
+     
     }
-    setPersons(persons.concat(noteObject))
-    setNewName('')
-    console.log(persons);
+ 
   }
   return (
     <div>
@@ -34,14 +43,14 @@ const App = () => {
       </form>
       <h2>Numbers</h2>
      
-      <ul>
+      <div>
         {persons.map(person => {
-          console.log(person);
-         return(<div key={person.name}>
+          // console.log(person);
+         return(<div key={person.id}>
                 <p>{person.name }</p>
               </div>)
         })}
-      </ul>
+      </div>
       
       <div>debug: {newName}</div>
     </div>
