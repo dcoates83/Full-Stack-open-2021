@@ -1,4 +1,32 @@
 import React, { useState } from 'react'
+const Filter = ({filter, setFilter}) => {
+  // console.log(e);
+  return (
+    <div>
+    Filter shown with: <input value={filter} onChange={(e) => { setFilter(e.target.value) }}/>
+    </div>
+  )
+}
+const Form = ({addNote,newName,setNewName,newPhone,setNewPhone}) => {
+  return (<form onSubmit={addNote}>
+        <div>
+          Name: <input value={newName }onChange={(e) => {setNewName(e.target.value)} }/>
+        </div>
+        <div>
+          Number: <input value={newPhone }onChange={(e) => {setNewPhone(e.target.value)} }/>
+        </div>
+        <div>
+          <button type="submit">add</button>
+        </div>
+      </form>)
+}
+const FilterNotes = ({ filterNotes }) => {
+  return (
+    <>
+      {filterNotes()}
+      </>
+  )
+}
 
 const App = () => {
   const [ persons, setPersons ] = useState([
@@ -11,18 +39,18 @@ const App = () => {
   const [newPhone, setNewPhone] = useState('')
   const [filter, setFilter] = useState('')
   // const [showAll, setShowAll] = useState(true)
-  const filterNotes = (e) => {
+  const filterNotes = () => {
     const newFilter = {
       name: filter
     }
     let nameFilter = persons.filter(person => person.name.includes(newFilter.name))
-    console.log(nameFilter);
+    // console.log(nameFilter);
     
     return (nameFilter.map(person => {
       return (<div key={person.name}>
         <p>Name: {person.name}</p>
         <p>Phone: {person.phone}</p>
-        -----------
+        
       </div>)
     }))
   }
@@ -53,37 +81,12 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <div>
-        Filter shown with: <input value={filter} onChange={(e) => {   setFilter(e.target.value) }}/>
-        </div>
+      <Filter value={filter} setFilter={setFilter} />
       <h3>Add a New</h3>
-      <form onSubmit={addNote}>
-        <div>
-          Name: <input value={newName }onChange={(e) => {setNewName(e.target.value)} }/>
-        </div>
-        <div>
-          Number: <input value={newPhone }onChange={(e) => {setNewPhone(e.target.value)} }/>
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+      <Form newName={newName} addNote={addNote} setNewName={setNewName} setNewPhone={setNewPhone} />
+     
       <h2>Numbers</h2>
-{/*      
-      <div>
-        {persons.map(person => {
-          // console.log(person);
-         return(<div key={person.name}>
-           <p>Name: {person.name} </p>
-           <p>Phone: { person.phone} </p>
-              </div>)
-        })}
-      </div>
-      
-      <div>debug: {filter}</div> */}
-      <div>
-        {filterNotes()}
-      </div>
+      <FilterNotes filterNotes={filterNotes}/>
     </div>
   )
 }
