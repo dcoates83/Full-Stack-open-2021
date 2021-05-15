@@ -35,9 +35,14 @@ const DisplayFilter = ({ newPlaces,newFilter }) => {
           <div>
             <h3>Languages</h3>
             <ul>
-               <li>
-          
-              </li>
+               
+                {country.languages.map(lan => {
+                  console.log(lan);
+                  return (
+                    <div key={lan.name}><li>{lan.name}</li></div>
+                    )
+          })}
+              
             </ul>
            </div>
            <div>
@@ -56,6 +61,7 @@ const DisplayFilter = ({ newPlaces,newFilter }) => {
       }
       )
     }
+    else return <p>No languages found</p>
   } 
 }
 const InputFilter = ({setNewFilter}) => {
