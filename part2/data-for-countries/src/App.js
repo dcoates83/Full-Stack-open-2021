@@ -1,5 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import axios from 'axios'
+import InputFilter from './components/input'
 
 const searchCountries = ({countries,newFilter}) => {
 
@@ -12,12 +13,65 @@ const searchCountries = ({countries,newFilter}) => {
 return newPlaces
 }
 
-const DisplayFilter = ({ newPlaces,newFilter }) => {
+const Item = () => {
+  const [item, setItem] = useState()
+  // assign the item as the state of the object
+}
+
+const showPlace = (  { country }) => {
+  // let item = e.target.previousSibling.wholeText.trim()
+  // console.log(item);
+  // setShow(item)
+  // console.log(show);
+console.log(country);
+
+  let showNewPlaces = [country];
+  return showNewPlaces.map(country => {
+    return  (<div key={country.name}>
+      
+      <p><strong>Capital:</strong> {country.capital }</p>
+      <p><strong>Population:</strong> {country.population}</p>
+      <div>
+        <h3>Languages</h3>
+        <ul>
+           
+            {country.languages.map(lan => {
+              // console.log(lan);
+              return (
+                <div key={lan.name}><li>{lan.name}</li></div>
+                )
+      })}
+        </ul>
+       </div>
+       <div>
+         <img src={country.flag} alt={country.name} style={{width:"200px"}}></img>
+         </div>
+     </div>)  
+  })
+}
+
+
+const DisplayFilter = ({ newPlaces, newFilter,countries }) => {
+  const [show, setShow] = useState(false)
+  
   if (newFilter.length === 0) {
     return newPlaces.map(country => {
+      
       return (
         <div key={country.name}>
-          <h3>{country.name}</h3>
+          <p>{country.name}
+         {/* toggle maybe? */}
+            <button onClick={(e) => {
+              let item = e.target.previousSibling.wholeText.trim()
+              // console.log(item);
+              setShow(item)
+              console.log(show);
+        
+            }}>Show</button>
+            {show === country.name ? showPlace({country}):""}
+          
+            </p>
+       
         </div>
     )})
   } else
@@ -46,7 +100,7 @@ const DisplayFilter = ({ newPlaces,newFilter }) => {
             </ul>
            </div>
            <div>
-             <img src={country.flag} alt={country.name}></img>
+             <img src={country.flag} alt={country.name} style={{width:"200px"}}></img>
              </div>
          </div>)  
       })
@@ -63,13 +117,6 @@ const DisplayFilter = ({ newPlaces,newFilter }) => {
     }
     else return <p>No languages found</p>
   } 
-}
-const InputFilter = ({setNewFilter}) => {
-  return (
-    <>
-      <input placeholder="search countries..." onChange={(e)=>{setNewFilter(e.target.value)}}></input>
-      </>
-  )
 }
 
 
@@ -89,7 +136,8 @@ useEffect(() => {
   return (
     <div >
       <InputFilter setNewFilter={setNewFilter}/>
-      <DisplayFilter newPlaces={filterCountries} newFilter={newFilter}/>
+      <DisplayFilter newPlaces={filterCountries} newFilter={newFilter} countries={countries} />
+  
     </div>
   );
 }
