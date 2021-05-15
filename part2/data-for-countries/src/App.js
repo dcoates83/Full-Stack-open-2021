@@ -9,19 +9,63 @@ const searchCountries = ({countries,newFilter}) => {
     let name = country.name;
     return name.includes(filter)
   })
-
-  if (newFilter.length === 0) {
-    return newPlaces
-  } else {
-    if (newPlaces.length > 10) {
-      return [{ name:"To many countries, add some more info in the search bar"}]
-    }
-    else {
-      return  newPlaces 
-    }
-  }
- 
+return newPlaces
 }
+
+const DisplayFilter = ({ newPlaces,newFilter }) => {
+  if (newFilter.length === 0) {
+    return newPlaces.map(country => {
+      return (
+        <div key={country.name}>
+          <h3>{country.name}</h3>
+        </div>
+    )})
+  } else
+  // somebody enters something into input
+  {
+    if (newPlaces.length > 10) {
+      return <p>"To many countries, add some more info in the search bar"</p>
+    }
+    else if (newPlaces.length === 1) {
+      return newPlaces.map(country => {
+        return  (<div key={country.name}>
+          <h2>{country.name}</h2>
+          <p><strong>Capital:</strong> {country.capital }</p>
+          <p><strong>Population:</strong> {country.population}</p>
+          <div>
+            <h3>Languages</h3>
+            <ul>
+               <li>
+          
+              </li>
+            </ul>
+           </div>
+           <div>
+             <img src={country.flag} alt={country.name}></img>
+             </div>
+         </div>)  
+      })
+    }
+    else if (newPlaces.length < 10) {
+      return newPlaces.map(country => {
+        return (
+          <div key={country.name}>
+            <h3>{country.name}</h3>
+          </div>
+        )
+      }
+      )
+    }
+  } 
+}
+const InputFilter = ({setNewFilter}) => {
+  return (
+    <>
+      <input placeholder="search countries..." onChange={(e)=>{setNewFilter(e.target.value)}}></input>
+      </>
+  )
+}
+
 
 const Filter = () => {
   const [countries, setCountries] = useState();
@@ -39,32 +83,14 @@ useEffect(() => {
   return (
     <div >
       <InputFilter setNewFilter={setNewFilter}/>
-      {filterCountries.map(country => {
-        return (
-          <div key={country.name}>
-            <h3>{country.name}</h3>
-            </div>
-      )})}
-      
+      <DisplayFilter newPlaces={filterCountries} newFilter={newFilter}/>
     </div>
   );
 }
 
 
-
-const InputFilter = ({setNewFilter}) => {
- 
-  return (
-    <>
-      <input placeholder="search countries..." onChange={(e)=>{setNewFilter(e.target.value)}}></input>
-      </>
-  )
-}
-
 function App() {
-  
-  
-  
+
   return (
     <div >
       <h1>Learn about Countries</h1>
