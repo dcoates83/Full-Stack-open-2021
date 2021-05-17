@@ -12,5 +12,9 @@ const create = newObject => {
 const update = (id, newObject) => {
   return axios.put(`${baseUrl}/${id}`, newObject)
 }
+const deletePerson = (id, newObject) => {
+  let confirm = window.confirm("Are you sure you want to delete this?")
+  return confirm ? axios.delete(`${baseUrl}/${id}`, newObject)
+   : null }
 
-export  { getAll, create, update }
+export  { getAll, create, update, deletePerson }

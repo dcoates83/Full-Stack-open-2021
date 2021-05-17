@@ -39,12 +39,13 @@ create(noteObject)
   //  .then(response => {
   //    console.log(response)
   //  })
-  //  setPersons(persons.concat(noteObject))
+   setPersons(persons.concat(noteObject))
    setNewName('')
    setNewPhone('')
  } else {
    alert(`${newName} has already been added`)
  }
+    console.log(persons);
 }
 
   return (
