@@ -22,10 +22,8 @@ const Button = ({errorMessage, setErrorMessage, persons,setResponse}) => {
        
       }).catch(error => {
         setErrorMessage(false)
-        console.log(errorMessage, 'here');
         axios.get(`http://localhost:3001/persons`).then(response => {
           let missing = persons.find(n => { return response.data.id !== n.id })
-          console.log(missing.name);
           setResponse(missing.name)
         })
         setTimeout(() => {
