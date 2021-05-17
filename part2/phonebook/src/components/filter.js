@@ -1,16 +1,21 @@
 import React from 'react'
 import { deletePerson } from '../services/service'
+import axios from 'axios'
 
 const Button = ({persons}) => {
   return (
     <button onClick={(e) => {
       let id = parseInt(e.target.parentNode.id)
       
-      const find = persons.find(n => {
-        return n.id === id
+      axios.get('http://localhost:3001/persons').then(response => {
+        const find = response.data.find(n => {
+          return n.id === id
+        })
+        deletePerson(id, find)
+        window.location.reload();
       })
-      deletePerson(id, find)
-      window.location.reload();
+      
+      
     }}>Delete </button>
   )
 }
