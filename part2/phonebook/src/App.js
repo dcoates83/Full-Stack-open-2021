@@ -3,16 +3,16 @@ import axios from 'axios'
 import FilterNotes from "./components/filter";
 import InputFilter from "./components/input";
 import Form from "./components/form";
-// import  addNote  from "./components/addNote";
+import { getAll, create, update } from "./services/service";
 
 
 const App = () => {
     const [ persons, setPersons ] = useState([
-  
   ]) 
   const [newName, setNewName] = useState('')
   const [newPhone, setNewPhone] = useState('')
   const [filter, setFilter] = useState('')
+  // const baseUrl = 'http://localhost:3001/persons'
   useEffect(() => {
     axios.get('http://localhost:3001/persons')
     .then(response => {
@@ -33,13 +33,13 @@ const App = () => {
      // important: Math.random() < 0.5,
     //  id: persons.length + 1,
    }
-
-   axios
-   .post('http://localhost:3001/persons', noteObject)
-   .then(response => {
-     console.log(response)
-   })
-   setPersons(persons.concat(noteObject))
+create(noteObject)
+  //  axios
+  //  .post('http://localhost:3001/persons', noteObject)
+  //  .then(response => {
+  //    console.log(response)
+  //  })
+  //  setPersons(persons.concat(noteObject))
    setNewName('')
    setNewPhone('')
  } else {
