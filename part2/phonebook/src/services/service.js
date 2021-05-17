@@ -10,7 +10,7 @@ const create = newObject => {
 }
 
 const update = ( newObject) => {
-  let confirm = window.confirm("Seem like you already have this person! Click Ok to update or cancel to do nothing")
+  let confirm = window.confirm("Seem like you already have this person! Click Ok to update  their phone # or cancel to do nothing")
   return confirm ? axios.put(`${baseUrl}/${newObject.id}`, newObject) : null
 }
 const deletePerson = (id, newObject) => {
