@@ -38,27 +38,20 @@ const Part = (props) => {
 
 
 const Total = (props) => {
- 
- const data = props.parts
 
+ const data = props.parts
  let total = data.reduce((sum, i) => {
-   
   return sum + i.exercises
- 
 },0)
 
  return (
    <div>
- 
      <h3>Number of exercises: {total}</h3>
- 
    </div>
-  
  )
 }
 
 const Course = ({ course }) => {
-
  return(
    <div>
      <h1>Web Development Curriculum</h1>
@@ -69,7 +62,6 @@ const Course = ({ course }) => {
      <Content parts= {course[1].parts}/>
      <Total parts= {course[1].parts}/>
    </div>)
- 
 }
 
 export default Course;
