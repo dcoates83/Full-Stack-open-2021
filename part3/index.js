@@ -5,7 +5,7 @@ const app = express()
 // Without the json-parser, the body property would be undefined. The json-parser functions so that it takes the JSON data of a request, transforms it into a JavaScript object and then attaches it to the body property of the request object before the route handler is called.
 app.use(express.json())
 
-const persons = [
+let persons = [
   { 
     "id": 1,
     "name": "Arto Hellas", 
@@ -100,7 +100,7 @@ app.post('/api/persons', (request, response) => {
 
 app.delete('/api/persons/:id', (request, response) => {
   const id = Number(request.params.id)
-  persons = persons.filter(person => person.id !== id)
+   persons = persons.filter(person => person.id !== id)
 // we respond to the request with the status code 204 no content and return no data with the response.
   response.status(204).end()
 })
