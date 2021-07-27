@@ -1,0 +1,47 @@
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.success {
+  color: green;
+  border: 3px solid green;
+  padding: 1em;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 15px;
+  background-color: #eee;
+}
+.error {
+  color: red;
+  border: 3px solid red;
+  padding: 1em;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 15px;
+  background-color: #eee;
+}
+h1 {
+  color: green;
+  font-style: italic;
+}
+.note {
+  color: grey;
+  padding-top: 3px;
+  font-size: 15px;
+}
+.error {
+  color: red;
+  background: #d3d3d3;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+/*# sourceMappingURL=main.5d184ed4.chunk.css.map */
