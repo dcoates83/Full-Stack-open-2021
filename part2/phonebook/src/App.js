@@ -6,6 +6,7 @@ import InputFilter from "./components/input";
 import Form from "./components/form";
 import { create, update } from "./services/service";
 
+
 const Notification = ({ message, response }) => {
   if (message) {
     return (<div className="success">
@@ -31,7 +32,7 @@ const App = () => {
   const [filter, setFilter] = useState('')
   const [errorMessage, setErrorMessage] = useState(null)
   const [response, setResponse] = useState()
-  const baseUrl = 'http://localhost:3001/persons'
+  const baseUrl = 'http://localhost:3001/api/persons'
   useEffect(() => {
     axios.get(`${baseUrl}`)
     .then(response => {
@@ -90,9 +91,13 @@ const App = () => {
       <h2>Numbers</h2>
       <Notification message={errorMessage} persons={persons} response={response}/>
       <FilterNotes persons={persons} filter={filter} setErrorMessage={setErrorMessage}
-        errorMessage={errorMessage} setResponse={setResponse}/>
+        errorMessage={errorMessage} setResponse={setResponse} />
+      
     </div>
   )
 }
+
+
+
 
 export default App

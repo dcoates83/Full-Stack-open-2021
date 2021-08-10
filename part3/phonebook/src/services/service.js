@@ -17,6 +17,7 @@ const update = (newObject) => {
 }
 const deletePerson = (id, newObject) => {
   let confirm = window.confirm("Are you sure you want to delete this?")
+  console.log(id, newObject);
   return confirm ? axios.delete(`${baseUrl}/${id}`, newObject): null }
 
 

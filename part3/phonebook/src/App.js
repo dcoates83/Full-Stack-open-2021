@@ -110,52 +110,6 @@ const App = () => {
 };
 
 
-{/* <h1> Languages <\h1>
-
-HTML & CSS // Advanced
-
-CSS Preprocessors
-(SCSS/SASS, Tailwind, Bootstrap, Webpack) // Advanced low */}
-
-Let knowledge = [
-  { javaScript: "Intermidiate-High" },
-  { react: "Intermediate" },
-  {
-    node: {
-      express: "Novice"
-    }
-  }];
-// bash echo “Intermediate hello world”
-
-// <!~~ Software ~~>
-
-// Github, Git: git commit -m ”Intermediate High”
-
-// SEO - metadata title="Novice Mid"
-
-// Static Site Generators - SSG:
-// Gatsby "Intermediate Low", Jekyll-"Novice High"
-
-// Content Management Systems - CMS:
-// Strapi - "Novice Mid", Contentful - "Novice Mid", Netlify-CMS - "Intermediate"
-
-// Hosting:
-// Netlify, Heroku, GitHub
-
-// query Databases {
-
-// skill(level:"novice"){
-// GraphQL
-// MongoDB
-// }
-// }
-
-// Other stuff:
-// Figma - Novice, API, EsLint, Prettier, Testing, Debugging, Ajax, SOLID
-
-// The levels of proficiency of my knowledge are listed above.
-
-// This is meant to be written in a fun way. If you don’t know the various code, it can look confusing. Ask and I can clarify further!
 
 
 export default App;
